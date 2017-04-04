@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Zabor Markdown Previewer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="row">
+		<div class="border col-xs-12 col-sm-6">
+			<textarea rows="22" style="width: 90%; margin-left: 5%; margin-right: 5%; margin-top: 30px;" id="input"></textarea>
+		</div>
+		<div class="border col-xs-12 col-sm-6" id="result"></div>
+	</div>
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+	<script>
+		window.onload = initPage;
+		function initPage() {
+			$("#input").keyup(inputHandler);
+			var temp = "# An exhibit of Markdown\n\nThis note demonstrates some of what [Markdown][1] is capable of doing.\n\n";
+			temp+= "*Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*";
+			$("#input").html(temp);
+			$("#result").html(marked(temp));
+		}
+		
+		
+		function inputHandler() {
+			var temp = marked($(this).val());
+			$("#result").html(temp);
+		}
+	</script>
+</body>
+
+</html>
